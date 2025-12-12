@@ -1,7 +1,7 @@
 # COMPSCI-744
 Final Project for Text Retrieval and Its Applications in Biomedicine.
 
-BioLinkSense: Biomedical Relation Extraction & Gemini Summarization
+# BioLinkSense: Biomedical Relation Extraction & Gemini Summarization
 
 This project builds a biomedical relation extraction system on the BioRED (BigBio) dataset, compares two transformer backbones (PubMedBERT and BioBERT), and then uses Google Gemini to generate abstractive summaries of biomedical documents.
 
@@ -18,22 +18,22 @@ Repository Structure
 At the top level of the repo you should see:
 
 .
-├── biolinksense.py          # Main entry script with CLI (train / eval / summarize)
-├── config.py                # Configuration (model names, dataset ids, training hyperparams)
-├── data_utils.py            # Loading BioRED + building relation-level dataset
-├── model_utils.py           # Training & evaluation helpers for transformers
-├── llm_utils.py             # Gemini API client + ROUGE evaluation
-├── utils.py                 # General utilities (seeding, logging helpers, etc.)
-├── requirements.txt         # Python dependencies
-├── demo_data/               # SMALL sampled subset of BioRED (for grading)
-│   ├── biored_docs_train.jsonl
-│   ├── biored_docs_validation.jsonl
-│   └── biored_docs_test.jsonl
-├── outputs/                 # Model checkpoints & metrics (created after running)
-│   ├── pubmedbert/          # PubMedBERT checkpoints + metrics
-│   ├── biobert/             # BioBERT checkpoints + metrics
-│   └── gemini_demo_summaries.jsonl  # Example Gemini summaries (demo run)
-└── README.md                # This file
+biolinksense.py          # Main entry script with CLI (train / eval / summarize)
+config.py                # Configuration (model names, dataset ids, training hyperparams)
+data_utils.py            # Loading BioRED + building relation-level dataset
+model_utils.py           # Training & evaluation helpers for transformers
+llm_utils.py             # Gemini API client + ROUGE evaluation
+utils.py                 # General utilities (seeding, logging helpers, etc.)
+requirements.txt         # Python dependencies
+demo_data/               # SMALL sampled subset of BioRED (for grading)
+  biored_docs_train.jsonl
+  biored_docs_validation.jsonl
+  biored_docs_test.jsonl
+outputs/                 # Model checkpoints & metrics (created after running)
+  pubmedbert/          # PubMedBERT checkpoints + metrics
+  biobert/             # BioBERT checkpoints + metrics
+  gemini_demo_summaries.jsonl  # Example Gemini summaries (demo run)
+README.md                # This file
 
 
 Demo data: the three JSONL files in demo_data/ are a small random sample of the full BioRED dataset (≈20 docs per split) 
