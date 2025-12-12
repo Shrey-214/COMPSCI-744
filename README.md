@@ -5,7 +5,7 @@ Final Project for Text Retrieval and Its Applications in Biomedicine.
 
 This project builds a biomedical relation extraction system on the BioRED (BigBio) dataset, compares two transformer backbones (PubMedBERT and BioBERT), and then uses Google Gemini to generate abstractive summaries of biomedical documents.
 
-The pipeline is:
+# The pipeline is:
 
 Load BioRED documents (either a small demo subset or the full dataset).
 Convert each document into entity–entity relation instances (positive and sampled negative pairs).
@@ -13,55 +13,14 @@ Train a supervised text classification model (PubMedBERT or BioBERT) to predict 
 Evaluate models and report macro precision/recall/F1 and a detailed classification report.
 Use Gemini 2.5 Flash to generate document summaries and compute ROUGE-L scores.
 
-Repository Structure
-
-At the top level of the repo you should see:
-
-
-
-├── biolinksense.py          # Main entry script with CLI (train / eval / summarize)
-|
-├── config.py                # Configuration (model names, dataset ids, training hyperparams)
-
-├── data_utils.py            # Loading BioRED + building relation-level dataset
-
-├── model_utils.py           # Training & evaluation helpers for transformers
-
-├── llm_utils.py             # Gemini API client + ROUGE evaluation
-
-├── utils.py                 # General utilities (seeding, logging helpers, etc.)
-
-├── requirements.txt         # Python dependencies
-
-├── demo_data/               # SMALL sampled subset of BioRED 
-
-│   ├── biored_docs_train.jsonl
-
-│   ├── biored_docs_validation.jsonl
-
-│   └── biored_docs_test.jsonl
-
-├── outputs/                 # Model checkpoints & metrics (created after running)
-
-│   ├── pubmedbert/          # PubMedBERT checkpoints + metrics
-
-│   ├── biobert/             # BioBERT checkpoints + metrics
-
-│   └── gemini_demo_summaries.jsonl  # Example Gemini summaries (demo run)
-
-└── README.md                # This file
-
-
 
 Demo data: the three JSONL files in demo_data/ are a small random sample of the full BioRED dataset (≈20 docs per split) 
-
 Full dataset: when demo_data/ is not present, the code falls back to downloading bigbio/biored (config: biored_bigbio_kb) from HuggingFace.
 
-Task & Expected Output
+# Task & Expected Output
 Task
 
 Input: a pair of biomedical entities (e.g., gene–disease, drug–drug) plus their abstract context.
-
 Output: a relation type for this entity pair (e.g., Association, Positive_Correlation, Drug_Interaction, or no_relation).
 
 Each document in BioRED is converted to many training instances, including both annotated positive relations and sampled negative pairs.
@@ -71,11 +30,8 @@ Model Outputs
 Running the code produces:
 
 Trained model checkpoints in ./outputs/<backbone>/ (e.g. pubmedbert, biobert).
-
 Validation and test metrics printed to the console and logged to ./outputs/<backbone>/eval_tmp/.
-
 A classification report on the test set (precision/recall/F1 per label + overall accuracy).
-
 Gemini summaries for a subset of documents in ./outputs/gemini_demo_summaries.jsonl.
 
 On the full BioRED relation dataset, the best results were:
@@ -86,9 +42,9 @@ Complete data outputs
 
 BioBERT: macro F1 ≈ 0.49, accuracy ≈ 0.65. 
 
-Installation
+# Installation
 
-# Install dependencies
+## Install dependencies
 pip install -r requirements.txt
 
 How to Run the Code on the Demo Dataset 
@@ -105,7 +61,6 @@ Save the model and tokenizer to ./outputs/pubmedbert/.
 
 2. Evaluate PubMedBERT on the demo test split
 python biolinksense.py --mode eval --backbone pubmedbert --device cpu
-
 
 Expected behavior:
 
@@ -138,8 +93,8 @@ Macro precision, recall, F1
 Full classification report (per-label precision/recall/F1 + accuracy)
 
 
-Running on the Full BioRED Dataset
-If you want to reproduce the full-dataset numbers:
+# Running on the Full BioRED Dataset
+If we want to reproduce the full-dataset numbers:
 
 Temporarily move or rename the demo_data/ folder so that it is not found:
 
@@ -161,7 +116,7 @@ Download bigbio/biored (biored_bigbio_kb) via datasets.load_dataset.
 Build the full relation-level dataset.
 Train and evaluate on the full splits.
 
-Gemini Summarization
+# Gemini Summarization
 
 To test the Gemini-based summarization on the demo documents:
 
