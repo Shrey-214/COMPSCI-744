@@ -18,9 +18,9 @@ Repository Structure
 At the top level of the repo you should see:
 
 
-.
-├── biolinksense.py          # Main entry script with CLI (train / eval / summarize)
 
+├── biolinksense.py          # Main entry script with CLI (train / eval / summarize)
+|
 ├── config.py                # Configuration (model names, dataset ids, training hyperparams)
 
 ├── data_utils.py            # Loading BioRED + building relation-level dataset
